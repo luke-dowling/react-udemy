@@ -1,14 +1,21 @@
+import { useContext } from "react";
 import classes from "./Todos.module.css";
 
-import Todo from "../models/todo";
 import ListItem from "./ListItem";
+import { TodosContext } from "../store/todos-context";
 
 // React.FC is already generic so the <> is what we us to state the type inside
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+const Todos: React.FC = () => {
+  const todosCtx = useContext(TodosContext);
+
   return (
     <ul className={classes.todos}>
-      {props.items.map((item) => (
-        <ListItem key={item.id} text={item.text} />
+      {todosCtx.items.map((item) => (
+        <ListItem
+          key={item.id}
+          text={item.text}
+          onRemoveTodo={todosCtx.removeTodo.bind(null, item.id)}
+        />
       ))}
     </ul>
   );
