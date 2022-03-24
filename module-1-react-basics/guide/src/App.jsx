@@ -1,4 +1,5 @@
-import ExpenseItem from "./components/ExpenseItem";
+import Expenses from "./components/Expenses/Expenses";
+import React from "react";
 
 const App = () => {
   const expenses = [
@@ -23,15 +24,21 @@ const App = () => {
     },
   ];
 
-  return (
-    <div className="App">
-      <h2>Let's get started</h2>
-      <ExpenseItem expenses={expenses[0]} />
-      <ExpenseItem expenses={expenses[1]} />
-      <ExpenseItem expenses={expenses[2]} />
-      <ExpenseItem expenses={expenses[3]} />
-    </div>
+  // what react is actually doing
+
+  return React.createElement(
+    "div",
+    {},
+    React.createElement("h2", {}, "Let's get started!"),
+    React.createElement(Expenses, { expenses })
   );
+
+  //return (
+  //  <>
+  //    <h2>Let's get started</h2>
+  //    <Expenses expenses={expenses} />
+  //  </>
+  //);
 };
 
 export default App;
